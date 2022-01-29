@@ -1,10 +1,11 @@
-export const isDev = () => process.env.ENVIRONMENT === "dev"
+export const isDev = () => process.env.ENVIRONMENT === 'dev'
 
 export const db = process.env.DATABASE_URL
 
 interface Config {
   token: string
   botUserId: string
+  testGuildId: string
 }
 
 export const getConfig = <T extends keyof Config>(key: T): Config[T] => {
@@ -12,5 +13,6 @@ export const getConfig = <T extends keyof Config>(key: T): Config[T] => {
   return val && JSON.parse(val)
 }
 
-export const token = getConfig("token")
-export const botUserId = getConfig("botUserId")
+export const token = getConfig('token')
+export const botUserId = getConfig('botUserId')
+export const testGuildId = getConfig('testGuildId')
