@@ -22,7 +22,7 @@
     "start": "node ./dist/index.js",
     "dev": "node -r dotenv/config ./dist/index.js",
     "postinstall": "tsc",
-    "watch-node": "nodemon dist/index.js",
+    "watch-node": "nodemon -r dotenv/config dist/index.js",
     "watch-ts": "tsc -w",
     "lint": "eslint . --ext .ts"
   },
@@ -38,7 +38,8 @@
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "dotenv": "^14.3.2",
-    "eslint": "^8.8.0"
+    "eslint": "^8.8.0",
+    "nodemon": "^2.0.15"
   },
   "volta": {
     "node": "16.13.2",
