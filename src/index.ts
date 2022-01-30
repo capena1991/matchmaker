@@ -1,9 +1,10 @@
 import { Client, Intents } from 'discord.js'
+import { broadcastToRoom } from './chat-room'
 import { getCommand, registerGlobalCommands, registerGuildCommands } from './commands'
 
 import { testGuildId, token } from './utils/config'
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES], partials: ['CHANNEL'] })
 
 client.once('ready', async () => {
   if (!client.user) {
@@ -44,6 +45,20 @@ client.on('interactionCreate', async (interaction) => {
     console.error(error)
     await interaction.reply('Oops! There was an error trying to execute that command! :disappointed:')
   }
+})
+
+client.on('messageCreate', async (message) => {
+  if (!client.user) {
+    throw `Logged in but no user.`
+  }
+
+  const { author, channel } = message
+
+  if (author.bot || channel.type !== 'DM') {
+    return
+  }
+
+  await broadcastToRoom(message)
 })
 
 client.login(token).catch(() => {
