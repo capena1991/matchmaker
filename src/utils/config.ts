@@ -6,7 +6,7 @@ interface Config {
   token: string
   botUserId: string
   testGuildId: string
-  organizerId: string
+  organizers: string[]
 }
 
 export const getConfig = <T extends keyof Config>(key: T): Config[T] => {
@@ -17,4 +17,4 @@ export const getConfig = <T extends keyof Config>(key: T): Config[T] => {
 export const token = getConfig('token')
 export const botUserId = getConfig('botUserId')
 export const testGuildId = getConfig('testGuildId')
-export const organizerId = getConfig('organizerId')
+export const organizers = getConfig('organizers')

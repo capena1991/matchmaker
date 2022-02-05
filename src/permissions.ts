@@ -1,8 +1,8 @@
 import { CommandInteraction } from 'discord.js'
 
-import { organizerId } from './utils/config'
+import { organizers } from './utils/config'
 
-const isOrganizer = (userId: string) => userId === organizerId
+const isOrganizer = (userId: string) => organizers.includes(userId)
 
 export const onlyOrganizer = (func: (interaction: CommandInteraction) => Promise<void>) => {
   return async (interaction: CommandInteraction) => {
