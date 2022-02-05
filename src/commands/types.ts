@@ -1,10 +1,10 @@
-import Discord from 'discord.js'
+import { ApplicationCommandOptionData, CommandInteraction } from 'discord.js'
 
 export interface Command {
   name: string
   description: string
-  options?: Discord.ApplicationCommandOptionData[]
-  run: (interaction: Discord.CommandInteraction) => Promise<void>
+  options?: ApplicationCommandOptionData[]
+  run: (interaction: CommandInteraction) => Promise<void>
 }
 
 export interface GuildCommand extends Command {
