@@ -1,9 +1,10 @@
 import { ApplicationCommandManager, GuildApplicationCommandManager } from 'discord.js'
 
 import { ping } from './commands/ping'
+import { join } from './commands/join'
 import { Command, isGuildCommand } from './types'
 
-const allCommands: Command[] = [ping]
+const allCommands: Command[] = [ping, join]
 const commandsMap = Object.fromEntries(allCommands.map((cmd) => [cmd.name, cmd]))
 
 const registerCommands = async (
