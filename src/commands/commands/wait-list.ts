@@ -10,9 +10,12 @@ export const waitList: GuildCommand = {
   run: onlyOrganizer(async (interaction) => {
     const { waitList } = await matches.get()
     if (waitList.length === 0) {
-      return interaction.reply('There are no people in the wait list.')
+      return interaction.reply({ content: 'There are no people in the wait list.', ephemeral: true })
     }
-    return interaction.reply(waitList.map((userId, i) => `**${i}** <@${userId}>`).join('\n'))
+    return interaction.reply({
+      content: waitList.map((userId, i) => `**${i}** <@${userId}>`).join('\n'),
+      ephemeral: true,
+    })
   }),
   guildId: testGuildId,
 }
