@@ -9,9 +9,9 @@ export const join: GuildCommand = {
   run: async (interaction) => {
     const result = await addToWaitList(interaction.user.id)
     if (!result.isSuccess) {
-      return interaction.reply(result.error)
+      return interaction.reply({ content: result.error, ephemeral: true })
     }
-    interaction.reply('You have been added to the wait list!')
+    return interaction.reply({ content: 'You have been added to the wait list!', ephemeral: true })
   },
   guildId: testGuildId,
 }
