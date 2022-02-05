@@ -1,5 +1,5 @@
 import { Client, Intents } from 'discord.js'
-import { broadcastToRoom } from './chat-room'
+import { broadcastToRoom } from './chat-room/messages'
 import { getCommand, registerGlobalCommands, registerGuildCommands } from './commands'
 
 import { testGuildId, token } from './utils/config'
