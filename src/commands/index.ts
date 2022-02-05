@@ -2,9 +2,10 @@ import { ApplicationCommandManager, GuildApplicationCommandManager } from 'disco
 
 import { ping } from './commands/ping'
 import { join } from './commands/join'
+import { waitList } from './commands/wait-list'
 import { Command, isGuildCommand } from './types'
 
-const allCommands: Command[] = [ping, join]
+const allCommands: Command[] = [ping, join, waitList]
 const commandsMap = Object.fromEntries(allCommands.map((cmd) => [cmd.name, cmd]))
 
 const registerCommands = async (
