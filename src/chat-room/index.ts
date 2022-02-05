@@ -1,6 +1,6 @@
 import { Message } from 'discord.js'
-import { getUserRoom } from './data'
-import { RoomUser } from './types'
+import { getUserRoom } from '../data/rooms'
+import { RoomUser } from '../types'
 
 const formatMessage = ({ content }: Message, author?: RoomUser) => `**[${author?.alias ?? 'unknown'}]** ${content}`
 

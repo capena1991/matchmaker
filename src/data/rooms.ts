@@ -1,8 +1,8 @@
 import Keyv from 'keyv'
 
 import { db } from '../utils/config'
-import { DataManager } from '../data/data-manager'
-import { Room } from './types'
+import { DataManager } from './data-manager'
+import { Room } from '../types'
 
 const initializeRoomData = () => ({
   users: [],
