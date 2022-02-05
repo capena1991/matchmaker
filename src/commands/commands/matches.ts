@@ -13,7 +13,7 @@ export const matches: GuildCommand = {
   run: onlyOrganizer(async (interaction) => {
     const { matches } = await matchesData.get()
     if (matches.length === 0) {
-      return interaction.reply({ content: 'There are no matches yet.', ephemeral: true })
+      return interaction.reply({ content: '_There are no matches yet._', ephemeral: true })
     }
     return interaction.reply({ content: formatMatches(matches), ephemeral: true })
   }),
