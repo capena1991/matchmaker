@@ -1,10 +1,8 @@
 import { onlyOrganizer } from '../../permissions'
 import { matches as matchesData } from '../../data/matches'
 import { testGuildId } from '../../utils/config'
+import { formatMatches } from '../../utils/formatting'
 import { GuildCommand } from '../types'
-
-const formatMatch = (users: string[]) => users.map((userId) => `<@${userId}>`).join(', ')
-const formatMatches = (matches: string[][]) => matches.map((users, i) => `**${i}** ${formatMatch(users)}`).join(', ')
 
 export const matches: GuildCommand = {
   name: 'matches',

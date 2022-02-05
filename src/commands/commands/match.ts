@@ -1,3 +1,4 @@
+import { formatMatch } from '../../utils/formatting'
 import { createMatch } from '../../chat-room/data'
 import { onlyOrganizer } from '../../permissions'
 import { testGuildId } from '../../utils/config'
@@ -30,8 +31,8 @@ export const match: GuildCommand = {
     if (!result.isSuccess) {
       return interaction.reply({ content: result.error, ephemeral: true })
     }
-    const [userId1, userId2] = result.result
-    return interaction.reply({ content: `Matched <@${userId1}> and <@${userId2}>`, ephemeral: true })
+    const users = result.result
+    return interaction.reply({ content: `Matched ${formatMatch(users)}`, ephemeral: true })
   }),
   guildId: testGuildId,
 }

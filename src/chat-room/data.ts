@@ -39,3 +39,16 @@ export const createMatch = async (
   })
   return { isSuccess: true, result: [user1Id, user2Id] }
 }
+
+export const removeMatch = async (index: number): Promise<OperationResult<string[]>> => {
+  const { matches: matchesList, waitList } = await matches.get()
+  if (matchesList.length < index) {
+    return { isSuccess: false, error: 'There are not that many matches.' }
+  }
+  const users = matchesList[index]
+  await matches.set({
+    matches: matchesList.filter((_, i) => i !== index),
+    waitList: [...waitList, ...users],
+  })
+  return { isSuccess: true, result: users }
+}
