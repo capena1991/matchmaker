@@ -4,9 +4,10 @@ import { ping } from './commands/ping'
 import { join } from './commands/join'
 import { waitList } from './commands/wait-list'
 import { matches } from './commands/matches'
+import { match } from './commands/match'
 import { Command, isGuildCommand } from './types'
 
-const allCommands: Command[] = [ping, join, waitList, matches]
+const allCommands: Command[] = [ping, join, waitList, matches, match]
 const commandsMap = Object.fromEntries(allCommands.map((cmd) => [cmd.name, cmd]))
 
 const registerCommands = async (

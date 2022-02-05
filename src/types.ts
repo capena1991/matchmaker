@@ -7,8 +7,9 @@ export interface Room {
   users: RoomUser[]
 }
 
-interface SuccessOperationResult {
+interface SuccessOperationResult<T> {
   isSuccess: true
+  result: T
 }
 
 interface ErrorOperationResult {
@@ -16,4 +17,4 @@ interface ErrorOperationResult {
   error: string
 }
 
-export type OperationResult = SuccessOperationResult | ErrorOperationResult
+export type OperationResult<T> = SuccessOperationResult<T> | ErrorOperationResult
