@@ -4,6 +4,5 @@ export interface RoomUser {
 }
 
 export interface Room {
-  id: string
   users: RoomUser[]
 }

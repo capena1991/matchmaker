@@ -1,21 +1,23 @@
+import Keyv from 'keyv'
+
+import { db } from '../utils/config'
+import { DataManager } from '../data/data-manager'
 import { Room } from './types'
 
-const userRoom: Record<string, string> = {
-  '425379183829581835': '1',
-  '937101273608646737': '1',
-}
+const initializeRoomData = () => ({
+  users: [],
+})
 
-const rooms: Record<string, Room> = {
-  '1': {
-    id: '1',
-    users: [
-      { id: '425379183829581835', alias: 'me' },
-      { id: '937101273608646737', alias: 'alt' },
-    ],
-  },
-}
+const roomsKeyv = new Keyv<Room>(db, { namespace: 'chat-room' })
+export const rooms = new DataManager<Room>(roomsKeyv, initializeRoomData)
 
-// TODO: get from DB
-export const getUserRoom = (userId: string) => {
-  return Promise.resolve(rooms[userRoom[userId]])
+const roomIndexKeyv = new Keyv<Record<string, string>>(db, { namespace: 'chat-room-index' })
+
+export const getUserRoom = async (userId: string) => {
+  const index = await roomIndexKeyv.get('index')
+  const roomId = index?.[userId]
+  if (!roomId) {
+    return undefined
+  }
+  return rooms.get(roomId)
 }
