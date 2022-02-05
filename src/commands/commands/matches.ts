@@ -4,7 +4,7 @@ import { testGuildId } from '../../utils/config'
 import { GuildCommand } from '../types'
 
 const formatMatch = (users: string[]) => users.map((userId) => `<@${userId}>`).join(', ')
-const formatMatches = (matches: string[][]) => matches.map((users, i) => `**${i}** <@${formatMatch(users)}>`).join(', ')
+const formatMatches = (matches: string[][]) => matches.map((users, i) => `**${i}** ${formatMatch(users)}`).join(', ')
 
 export const matches: GuildCommand = {
   name: 'matches',
