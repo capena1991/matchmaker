@@ -2,10 +2,9 @@ import { matches } from '../../data/matches'
 import { closeAllRooms, createRoom } from '../../chat-room/data'
 import { sendWelcome } from '../../chat-room/messages'
 import { onlyOrganizer } from '../../permissions'
-import { testGuildId } from '../../utils/config'
-import { GuildCommand } from '../types'
+import { Command } from '../types'
 
-export const start: GuildCommand = {
+export const start: Command = {
   name: 'start',
   description: 'Start the blind date event with the current matches.',
   options: [],
@@ -31,5 +30,4 @@ export const start: GuildCommand = {
 
     interaction.editReply(`**${matchesList.length}** blind dates just started!`)
   }),
-  guildId: testGuildId,
 }

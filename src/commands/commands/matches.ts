@@ -1,10 +1,9 @@
 import { onlyOrganizer } from '../../permissions'
 import { matches as matchesData } from '../../data/matches'
-import { testGuildId } from '../../utils/config'
 import { formatMatches } from '../../utils/formatting'
-import { GuildCommand } from '../types'
+import { Command } from '../types'
 
-export const matches: GuildCommand = {
+export const matches: Command = {
   name: 'matches',
   description: 'Check the matches already made.',
   options: [],
@@ -15,5 +14,4 @@ export const matches: GuildCommand = {
     }
     return interaction.reply({ content: formatMatches(matches), ephemeral: true })
   }),
-  guildId: testGuildId,
 }

@@ -1,10 +1,9 @@
 import { formatMatch } from '../../utils/formatting'
 import { removeMatch } from '../../chat-room/data'
 import { onlyOrganizer } from '../../permissions'
-import { testGuildId } from '../../utils/config'
-import { GuildCommand } from '../types'
+import { Command } from '../types'
 
-export const unmatch: GuildCommand = {
+export const unmatch: Command = {
   name: 'unmatch',
   description: 'Undo a match.',
   options: [
@@ -26,5 +25,4 @@ export const unmatch: GuildCommand = {
     const users = result.result
     return interaction.reply({ content: `Unmatched ${formatMatch(users)}`, ephemeral: true })
   }),
-  guildId: testGuildId,
 }

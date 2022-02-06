@@ -1,9 +1,8 @@
 import { onlyOrganizer } from '../../permissions'
 import { matches } from '../../data/matches'
-import { testGuildId } from '../../utils/config'
-import { GuildCommand } from '../types'
+import { Command } from '../types'
 
-export const waitList: GuildCommand = {
+export const waitList: Command = {
   name: 'wait-list',
   description: 'Check the people waiting to be matched.',
   options: [],
@@ -17,5 +16,4 @@ export const waitList: GuildCommand = {
       ephemeral: true,
     })
   }),
-  guildId: testGuildId,
 }

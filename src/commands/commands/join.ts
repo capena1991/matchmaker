@@ -1,8 +1,7 @@
 import { addToWaitList } from '../../chat-room/data'
-import { testGuildId } from '../../utils/config'
-import { GuildCommand } from '../types'
+import { Command } from '../types'
 
-export const join: GuildCommand = {
+export const join: Command = {
   name: 'join',
   description: 'Get into the wait list for your blind date.',
   options: [],
@@ -13,5 +12,4 @@ export const join: GuildCommand = {
     }
     return interaction.reply({ content: 'You have been added to the wait list!', ephemeral: true })
   },
-  guildId: testGuildId,
 }

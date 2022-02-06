@@ -1,10 +1,9 @@
 import { formatMatch } from '../../utils/formatting'
 import { createMatch } from '../../chat-room/data'
 import { onlyOrganizer } from '../../permissions'
-import { testGuildId } from '../../utils/config'
-import { GuildCommand } from '../types'
+import { Command } from '../types'
 
-export const match: GuildCommand = {
+export const match: Command = {
   name: 'match',
   description: 'Match two people from the wait list.',
   options: [
@@ -34,5 +33,4 @@ export const match: GuildCommand = {
     const users = result.result
     return interaction.reply({ content: `Matched ${formatMatch(users)}`, ephemeral: true })
   }),
-  guildId: testGuildId,
 }

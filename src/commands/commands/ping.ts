@@ -1,12 +1,10 @@
-import { testGuildId } from '../../utils/config'
-import { GuildCommand } from '../types'
+import { Command } from '../types'
 
-export const ping: GuildCommand = {
+export const ping: Command = {
   name: 'ping',
   description: 'Replies with pong!',
   options: [],
   run: async (interaction) => {
     interaction.reply('Pong')
   },
-  guildId: testGuildId,
 }
