@@ -1,4 +1,4 @@
-import { OperationResult } from '@app/types'
+import { OperationResult, Room } from '../types'
 import { matches } from '../data/matches'
 import { roomIndex, rooms } from '../data/rooms'
 
@@ -51,4 +51,19 @@ export const removeMatch = async (index: number): Promise<OperationResult<string
     waitList: [...waitList, ...users],
   })
   return { isSuccess: true, result: users }
+}
+
+export const closeAllRooms = async (): Promise<OperationResult<boolean>> => {
+  await Promise.all([rooms.keyv.clear(), roomIndex.keyv.clear()])
+  return { isSuccess: true, result: true }
+}
+
+export const createRoom = async (roomId: string, userIds: string[]): Promise<OperationResult<Room>> => {
+  const index = await roomIndex.get()
+  const newIndexEntries = Object.fromEntries(userIds.map((userId) => [userId, roomId]))
+
+  const room = { users: userIds.map((id, i) => ({ id, alias: `Stranger${i + 1}` })) }
+  await Promise.all([rooms.set(room, roomId), roomIndex.set({ ...index, ...newIndexEntries })])
+
+  return { isSuccess: true, result: room }
 }

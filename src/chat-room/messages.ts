@@ -1,8 +1,17 @@
-import { Message } from 'discord.js'
-import { RoomUser } from '../types'
+import { Message, Client } from 'discord.js'
+import { RoomUser, Room } from '../types'
 import { getUserRoom } from './data'
 
 const formatMessage = ({ content }: Message, author?: RoomUser) => `**[${author?.alias ?? 'unknown'}]** ${content}`
+
+const sendMessageToUser = async (userId: string, message: string, client: Client) => {
+  const user = await client.users.fetch(userId)
+  try {
+    await user.send(message)
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 export const broadcastToRoom = async (message: Message) => {
   const { author, client } = message
@@ -15,16 +24,22 @@ export const broadcastToRoom = async (message: Message) => {
   const authorRoomUser = room.users.find(({ id }) => id === author.id)
 
   await Promise.all(
-    room.users.map(async ({ id }) => {
+    room.users.map(({ id }) => {
       if (id === author.id) {
         return
       }
-      const user = await client.users.fetch(id)
-      try {
-        await user.send(formatMessage(message, authorRoomUser))
-      } catch (error) {
-        console.error(error)
-      }
+      return sendMessageToUser(id, formatMessage(message, authorRoomUser), client)
     }),
   )
 }
+
+export const sendWelcome = async (room: Room, client: Client) =>
+  Promise.all(
+    room.users.map(({ id }) =>
+      sendMessageToUser(
+        id,
+        '**Your blind date has started! Start talking to each other and let me see that loooove 💘**',
+        client,
+      ),
+    ),
+  )
